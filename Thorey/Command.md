@@ -1,0 +1,13 @@
+- kubectl get node  // show all nodes, status 
+- kubectl describe node node_name  //  details of node
+- kubectl get pod -A  // show list of all pods 
+- kubectl get ns     // show all namespaces
+- kubectl create namespace namespace_name   // crate namespace 
+- kubectl delete namespace namespace_name   // delete namespace
+- kubectl get pod // show only default ns pods 
+- kubectl run pod_name --image=image_name --port=imageport -n namespace   // create pod 
+- kubectl exec -it podname -n namespace -- bash/command  // connect with pod
+- kubectl describe pod podname -n namespace   // describe pod 
+- kubectl delete pod podname -n ns        // delete pod services     
+- kubectl logs podname -n namespace     // logs of pods
+- kubectl cp srcpath ns/podname:dest_path    // copy file in container
