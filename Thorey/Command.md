@@ -11,3 +11,4 @@
 - kubectl delete pod podname -n ns        // delete pod services     
 - kubectl logs podname -n namespace     // logs of pods
 - kubectl cp srcpath ns/podname:dest_path    // copy file in container
+- kubectl run pod pod_name --image=image_name --port=containerport --dry-run=client -o yaml 
