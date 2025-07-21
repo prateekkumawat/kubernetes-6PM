@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: nginx-app-0-svc
+  namespace: nginx-group
+  labels: 
+    application: webapp
+    apptype: webserver
+    appname: nginx
+spec:
+  selector:
+    appname: nginx
+  type: ClusterIP
+  ports:
+  - name: nginx-app-0-port-http
+    port: 80
+    targetPort: 80

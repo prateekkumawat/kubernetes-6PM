@@ -13,10 +13,10 @@ spec:
     image: nginx:latest
     resources:
       requests: 
-        memory: "100Mi"
+        memory: "300Mi"
         cpu: "200m"
       limits:
-        memory: "128Mi"
+        memory: "700Mi"
         cpu: "500m"
     ports:
       - containerPort: 80
