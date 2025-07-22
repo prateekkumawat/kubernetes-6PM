@@ -38,8 +38,9 @@ metadata:
 spec:
   selector:
     app: example1
-  type:  ClusterIP
+  type: NodePort        # ClusterIP 
   ports:
   - name: example1-port
     port: 80
     targetPort: 80
+    nodePort: 30002       # only add when nodeport service decleared 
