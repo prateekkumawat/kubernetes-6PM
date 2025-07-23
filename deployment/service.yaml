@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: villa-image
+  namespace: villa-image
+  labels:
+    app: villa-image
+spec:
+  selector:
+    app:  Selector Label
+  type: NodePort
+  ports:
+  - name: http-villa-image
+    port: 80
+    targetPort: 80

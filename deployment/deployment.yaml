@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: villa-image
+  namespace: villa-image
+  labels: 
+    app: villa-image
+spec:
+  selector:
+    matchLabels:
+      app: villa-image
+  template:
+    metadata:
+      labels:
+        app: villa-image
+    spec:
+      containers:
+      - name: villa-image
+        image: prateekkumawat/villa:latest
+        resources:
+          requests: 
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "800Mi"
+            cpu: "800m"
+        ports:
+        - containerPort: 80
