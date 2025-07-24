@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: mysql-server
+  labels:
+    app: database
+type: Opaque    
+data:
+  password: VDIzcmVWUjEyNnkK    
+  username: dGFwdXNlbmEK
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-admin-auth
+  namespace: mysql-server
+  labels:
+    app: database
+type: Opaque    
+data:
+  password: VDU2cmVWUjEyNnkK   
