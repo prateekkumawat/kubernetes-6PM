@@ -23,3 +23,8 @@ A ReplicaSet's purpose is to maintain a stable set of replica Pods running at an
 # kubernetes job and cron ::: 
 Jobs represent one-off tasks that run to completion and then stop. 
 cron :: A CronJob starts one-time Jobs on a repeating schedule.
+
+
+# Kubernetes Secret :::
+
+A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in a container image. Using a Secret means that you don't need to include confidential data in your application code.
