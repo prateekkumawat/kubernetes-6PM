@@ -47,5 +47,5 @@ spec:
                key: password
       volumes:
       - name: data-path
-        persistenetVolumeClaim:
+        persistentVolumeClaim:
            claimName: mysql-server-data-0
