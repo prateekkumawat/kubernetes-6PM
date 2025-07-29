@@ -17,6 +17,9 @@ spec:
       containers:
       - name: mysql-container
         image: mysql:latest
+        volumeMounts:
+        - name: data-path
+          mountPath: /var/lib/mysql/
         resources:
           requests: 
             memory: "800Mi"
@@ -42,3 +45,7 @@ spec:
              secretKeyRef:
                name: mysql-secret
                key: password
+      volumes:
+      - name: data-path
+        persistenetVolumeClaim:
+           claimName: mysql-server-data-0
