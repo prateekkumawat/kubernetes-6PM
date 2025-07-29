@@ -10,6 +10,6 @@ spec:
     requests:
       storage: 1Gi
   volumeMode: Filesystem
-  storageclass: local-path
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
