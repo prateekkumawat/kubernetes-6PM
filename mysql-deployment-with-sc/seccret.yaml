@@ -7,8 +7,8 @@ metadata:
     app: database
 type: Opaque    
 data:
-  password: VDIzcmVWUjEyNnkK    
-  username: dGFwdXNlbmEK
+  password: bWFuc2lAMTIz  
+  username: bWFuc2k=
 
 ---
 apiVersion: v1
