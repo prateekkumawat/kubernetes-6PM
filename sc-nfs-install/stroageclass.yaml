@@ -1,0 +1,21 @@
+# Install CSI Driver in Kubernetes for manage and provision your NFS 
+# https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/install-csi-driver-v4.11.0.md
+# curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/v4.11.0/deploy/install-driver.sh | bash -s v4.11.0 --
+# kubectl get node -A  // for check csi driver running 
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-store
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 172.31.40.140
+  share: /kubeddata/csi
+  # csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
+  # csi.storage.k8s.io/provisioner-secret-name: "mount-options"
+  # csi.storage.k8s.io/provisioner-secret-namespace: "default"
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.1
