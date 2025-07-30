@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-server-data-0
+  namespace: mysql-server
+  labels:
+    app: database
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  storageClassName: nfs-store
+  accessModes:
+    - ReadWriteOnce
