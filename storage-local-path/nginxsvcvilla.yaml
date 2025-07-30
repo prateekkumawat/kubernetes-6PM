@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: nginx-app-1-svc
+  namespace: nginx-group
+  labels: 
+    application: webapp
+    apptype: webserver
+    appname: nginx-villa
+spec:
+  selector:
+    appname: nginx-villa
+  type: NodePort
+  ports:
+  - name: nginx-app-1-port-http
+    port: 80
+    targetPort: 80
