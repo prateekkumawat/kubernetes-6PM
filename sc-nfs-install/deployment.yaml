@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-app
+  namespace: mongo
+  labels:
+    app: nosql 
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: nosql
+  template:
+    metadata:
+      labels:
+        app: nosql
+    spec:
+      containers:
+      - name: mongo-app
+        image: mongo:latest
+        resources:
+          requests: 
+            memory: "800Mi"
+            cpu: "500m"
+          limits:
+            memory: "1000Mi"
+            cpu: "900m"
+        ports:
+        - containerPort: 27017
+        env: 
+         - name: MONGO_INITDB_ROOT_USERNAME
+           valueFrom:
+             secretKeyRef:
+               name: mongo-auth 
+               key: user
+         - name: MONGO_INITDB_ROOT_PASSWORD
+           valueFrom:
+             secretKeyRef:
+               name: mongo-auth 
+               key: password
+        volumeMounts:
+        - name: mongo-data-path
+          mountPath: /data/db       
+      volumes:
+      - name: mongo-data-path
+        persistentVolumeClaim: 
+          claimName: mongo-data-vol-1
