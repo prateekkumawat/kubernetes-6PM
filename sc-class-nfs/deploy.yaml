@@ -27,7 +27,7 @@ spec:
         image: nginx
         volumeMounts:
         - name: data-path
-        mountPath: /usr/share/nginx/html/
+          mountPath: /usr/share/nginx/html/
         resources:
           limits:
             memory: "128Mi"
@@ -48,7 +48,7 @@ spec:
     requests:
       storage: 1Gi
   volumeMode: Filesystem
-  StorageClassName: nfs-autopath
+  storageClassName: nfs-autopath
   accessModes:
     - ReadWriteOnce
 
