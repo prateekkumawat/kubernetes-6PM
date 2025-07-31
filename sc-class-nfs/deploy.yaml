@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: check-store
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-check
+  namespace: check-store
+spec:
+  selector:
+    matchLabels:
+      app: storage-check
+  template:
+    metadata:
+      labels:
+        app: storage-check
+    spec:
+      volumes:
+      - name: data-path
+        persistentVolumeClaim:
+          claimName: data-path-vol
+      containers:
+      - name: storage-check
+        image: nginx
+        volumeMounts:
+        - name: data-path
+        mountPath: /usr/share/nginx/html/
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+       
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-path-vol
+  namespace: check-store
+  labels:
+    app: storage-check
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  StorageClassName: nfs-autopath
+  accessModes:
+    - ReadWriteOnce
+
