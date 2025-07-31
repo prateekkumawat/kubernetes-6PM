@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+  labels:
+    app.kubernetes.io/name: nginx1
+spec:
+  containers:
+  - name: nginx1
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx1-svc
+spec:
+  selector:
+    app: nginx1
+  type: ClusterIP
+  ports:
+  - name: nginx-port
+    port: 80
+    targetPort: 80
