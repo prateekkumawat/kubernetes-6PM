@@ -22,7 +22,7 @@ metadata:
   name: nginx1-svc
 spec:
   selector:
-    app: nginx1
+    app.kubernetes.io/name: nginx1
   type: ClusterIP
   ports:
   - name: nginx-port
