@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-app-1-ing
+  namespace: nginx-group
+  labels:
+    application: webapp
+    apptype: webserver
+    appname: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /villa
+        backend:
+          service:
+            name: nginx-app-1-svc
+            port: 
+              number: 80
