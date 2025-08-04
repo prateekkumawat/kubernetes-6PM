@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: phpmyadmin
   namespace: mysql-server 
-  lables: 
+  labels:
     app: database
 spec:
   selector:
