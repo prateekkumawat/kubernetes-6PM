@@ -5,14 +5,17 @@ metadata:
   namespace: mysql-server 
   labels:
     app: database
+    component: pma
 spec:
   selector:
     matchLabels:
       app: database
+      component: pma
   template:
     metadata:
       labels:
         app: database
+        component: pma
     spec:
       containers:
       - name: phpmyadmin
@@ -36,9 +39,10 @@ metadata:
   namespace: mysql-server
   labels:
     app: database
+    component: pma
 spec:
   selector:
-    app: database
+    component: pma
   type: ClusterIP
   ports:
   - name: http

@@ -27,6 +27,7 @@ metadata:
   namespace: mysql-server
   labels:
     app: database
+    component: pma
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
