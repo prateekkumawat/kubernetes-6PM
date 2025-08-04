@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  namespace: mysql-server 
+  lables: 
+    app: database
+spec:
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: phpmyadmin:latest
+        resources:
+          limits:
+            memory: "900Mi"
+            cpu: "700m"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: PMA_HOST
+          value: mysql-server-svc.mysql-server.svc.cluster.local
+        - name: PMA_PORT
+          value: "3306"   
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: phpmyadmin-svc
+  namespace: mysql-server
+  labels:
+    app: database
+spec:
+  selector:
+    app: database
+  type: ClusterIP
+  ports:
+  - name: http
+    port:  80
+    targetPort: 80
