@@ -11,11 +11,11 @@ metadata:
   # "namespace" omitted since ClusterRoles are not namespaced
   name: developer-reader
 rules:
-- apiGroups: [""]
+- apiGroups: ["*"]
   #
   # at the HTTP level, the name of the resource for accessing Secret
   # objects is "secrets"
-  resources: ["secrets", "pods", "deployment", "pvc", "pv", "ingress" ]
+  resources: ["secrets", "pods", "deployment", "pvc", "pv", "ingress", "*"]
   verbs: ["get", "watch", "list", "describe"]
 
 ---
@@ -41,3 +41,5 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: "developer"   
 type: kubernetes.io/service-account-token  
+
+# kubectl get secret developer -n kubernetes-dashboard -o jsonpath="{.data.token}" | base64 -d
