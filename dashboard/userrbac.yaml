@@ -10,6 +10,17 @@ rules:
   verbs: ["get", "watch", "list", "create", "delete"]
 
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: pod-reader-lg
+  namespace: longhorn-system
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["pods", "deployments", "replicasets", "service"]
+  verbs: ["get", "watch", "list", "create", "delete"]
+---
 # role bind for created user 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -27,5 +38,21 @@ roleRef:
   name: pod-reader-default # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: ""
 
-
+---
+# role bind for created user 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: role-bind-developer1
+  namespace: longhorn-system
+subjects:
+# You can specify more than one "subject"
+- kind: User
+  name: kube1user
+  apiGroup: ""
+roleRef:
+  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: Role #this must be Role or ClusterRole
+  name: pod-reader-lg # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: ""
 
