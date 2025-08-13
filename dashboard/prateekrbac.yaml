@@ -1,0 +1,76 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prateek-default-ns-reader
+  namespace: default
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["pods", "deployments", "replicasets", "service"]
+  verbs: ["get", "watch", "list", "create"]
+
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prateek-longhorn-ns-reader
+  namespace: longhorn-system
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["pods", "deployments", "replicasets", "service", "pvc"]
+  verbs: ["get", "watch", "list"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prateek-custom-ns-reader
+  namespace: prateekhome
+rules:
+- apiGroups: ["", "apps"]
+  resources: ["pods", "deployments", "service"]
+  verbs: ["*"]
+
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: role-bind-policy1
+  namespace: default
+subjects:
+- kind: User
+  name: prateek-user
+  apiGroup: ""
+roleRef:
+  kind: Role 
+  name: prateek-default-ns-reader
+  apiGroup: ""
+
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: role-bind-policy2
+  namespace: longhorn-system
+subjects:
+- kind: User
+  name: prateek-user
+  apiGroup: ""
+roleRef:
+  kind: Role 
+  name: prateek-longhorn-ns-reader
+  apiGroup: ""
+
+--- 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: role-bind-policy3
+  namespace: prateekhome
+subjects:
+- kind: User
+  name: prateek-user
+  apiGroup: ""
+roleRef:
+  kind: Role 
+  name: prateek-custom-ns-reader
+  apiGroup: ""    
