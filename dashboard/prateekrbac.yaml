@@ -38,7 +38,7 @@ metadata:
   namespace: default
 subjects:
 - kind: User
-  name: prateek-user
+  name: prateek
   apiGroup: ""
 roleRef:
   kind: Role 
@@ -53,7 +53,7 @@ metadata:
   namespace: longhorn-system
 subjects:
 - kind: User
-  name: prateek-user
+  name: prateek
   apiGroup: ""
 roleRef:
   kind: Role 
@@ -68,7 +68,7 @@ metadata:
   namespace: prateekhome
 subjects:
 - kind: User
-  name: prateek-user
+  name: prateek
   apiGroup: ""
 roleRef:
   kind: Role 
