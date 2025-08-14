@@ -24,7 +24,7 @@ kind: ClusterRole
 metadata:
   # "namespace" omitted since ClusterRoles are not namespaced
   name: role-developer
-  namespace: default
+  namespace: 
 rules:
 - apiGroups: ["", "extensions", "apps"]
   #

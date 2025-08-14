@@ -1,0 +1,30 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: role1
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  #
+  # at the HTTP level, the name of the resource for accessing Secret
+  # objects is "secrets"
+  resources: ["pods", "deployments", "replicasets"]
+  verbs: ["get", "watch", "list", "create", "delete"]
+
+---
+
+# role bind for created user 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: role-bind-developer-1
+subjects:
+# You can specify more than one "subject"
+- kind: User
+  name: prateek
+  apiGroup: ""
+roleRef:
+  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: ClusterRole #this must be Role or ClusterRole
+  name: role1  # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: ""
