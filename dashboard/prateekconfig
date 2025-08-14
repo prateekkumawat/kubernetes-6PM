@@ -7,13 +7,13 @@ clusters:
 contexts:
 - context:
     cluster: kubernetes
-    user: prateek-user
+    user: prateek
   name: prateek-context
 current-context: prateek-context
 kind: Config
 preferences: {}
 users:
-- name: prateek-user
+- name: prateek
   user:
     client-certificate: /home/prateek/certs/prateekuser.crt
     client-key: /home/prateek/certs/prateekuser.key
